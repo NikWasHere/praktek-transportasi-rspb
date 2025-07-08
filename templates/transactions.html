@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>Data Transaksi</h2>
+<form method="POST">
+    <input name="driver_name" placeholder="Nama Driver" required>
+    <input name="driver_plate" placeholder="No Plat" required>
+    <input name="start" placeholder="Point Awal" required>
+    <input name="end" placeholder="Point Akhir" required>
+    <input name="distance" type="number" placeholder="Jarak" required>
+    <input name="date" type="text" placeholder="Tanggal (misal: 7/8/2025)" required>
+    <input name="actual_time" type="number" placeholder="Waktu Aktual" required>
+    <input name="std_time" type="number" placeholder="Waktu Standar" required>
+    <input name="cost" type="number" placeholder="Total Cost" required>
+    <button type="submit">Tambah Transaksi</button>
+</form>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Nama</th><th>Plat</th><th>Rute</th><th>Jarak</th><th>Tanggal</th><th>Waktu</th><th>Telat</th><th>Biaya</th>
+    </tr>
+    {% for t in trans %}
+        <tr>
+            <td>{{ t.driver_name }}</td>
+            <td>{{ t.driver_plate }}</td>
+            <td>{{ t.start }} → {{ t.end }}</td>
+            <td>{{ t.distance }}</td>
+            <td>{{ t.date }}</td>
+            <td>{{ t.actual_time }}/{{ t.std_time }}</td>
+            <td>{{ t.telat }}</td>
+            <td>{{ t.cost }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
